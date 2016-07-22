@@ -4,6 +4,7 @@ Bundler.require
 
 # This is the Model
 require './models/user'
+require './models/author'
 
 # This is the controller
 require './app'
