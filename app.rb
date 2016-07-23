@@ -1,7 +1,10 @@
 class RedmartSinatraApp < Sinatra::Base
+  # ignore the static pages
   get '/' do
-    erb 'Hellow'
+    erb "<h2>Welcome to redmart</h2>"
   end
+
+  # RESTFUL RESOURCES, CREATE READ UPDATE DELETE
 
   get '/users' do
     @users = User.all
@@ -9,9 +12,54 @@ class RedmartSinatraApp < Sinatra::Base
   end
 
   get '/users/:id' do
-    @user_id = User.find(params[:id])
-    erb :'user/show'
-
+    if params[:id] == 'new'
+      erb :'users/new'
+    else
+      @user = User.find(params[:id])
+      erb :'users/show'
+    end
   end
 
+  get '/users/:id/edit' do
+    @user = User.find(params[:id])
+    erb :'users/edit'
+  end
+
+  post '/users' do
+    puts params[:user]
+
+
+    @new_user = User.new(params[:user])
+
+    if @new_user.save
+      # go to all users list
+      redirect("/users")
+    else
+      # throw an error
+      erb :"users/new"
+    end
+  end
+
+  put '/users'
+
+  put '/users/:id' do
+    @updated_user = User.find(params[:id])
+
+    if @updated_user.update_attributes( params[:user] )
+      redirect("/users")
+    end
+  end
+
+  delete '/users/:id' do
+    @deleted_user = User.find(params[:id])
+
+    if @deleted_user.destroy
+      # go to all users list
+      redirect("/users")
+    else
+      # throw an error
+      erb :"users/#{ @deleted_user.id }"
+    end
+
+  end
 end

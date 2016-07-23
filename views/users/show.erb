@@ -1,6 +1,8 @@
-<h2>Each User Page</h2>
+<h3><%= @user[:name] %>'s Page</h3>
+<p><%= @user[:address] %></p>
 
-<p>
-the ID of this user is <%= @user_id[:id] %></br>
-the name of this user is <%= @user_id[:name] %></br>
-</p>
+<!-- delete flow  -->
+<form action="/users/<%= @user[:id] %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>

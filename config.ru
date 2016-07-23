@@ -2,12 +2,12 @@ require 'rubygems'
 require 'bundler'
 Bundler.require
 
-# This is the Model
+# LOAD MODEL
 require './models/user'
-require './models/author'
 
-# This is the controller
+# LOAD THE APP
 require './app'
 
-# Class refers to the class name in app.rb
-run RedmartSinatraApp
+# ALLOW DELETE AND PUT REQUEST
+use Rack::MethodOverride
+run RedmartSinatraApprequire 'rubygems'
