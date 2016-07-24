@@ -10,4 +10,4 @@ require './app'
 
 # ALLOW DELETE AND PUT REQUEST
 use Rack::MethodOverride
-run RedmartSinatraApprequire 'rubygems'
+run RedmartSinatraApp

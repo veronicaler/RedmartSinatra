@@ -40,8 +40,6 @@ class RedmartSinatraApp < Sinatra::Base
     end
   end
 
-  put '/users'
-
   put '/users/:id' do
     @updated_user = User.find(params[:id])
 
